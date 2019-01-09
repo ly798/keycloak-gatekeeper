@@ -27,6 +27,11 @@ build: golang
 	@mkdir -p bin
 	go build -ldflags "${LFLAGS}" -o bin/${NAME}
 
+build-debug: golang
+	@echo "--> Compiling the project"
+	@mkdir -p bin
+	go build -ldflags "${LFLAGS}" -gcflags "-N -l" -o bin/${NAME}
+
 release: clean golang deps
 	@mkdir -p release
 	$(foreach GOOS, $(PLATFORMS),\
